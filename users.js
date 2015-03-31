@@ -27,6 +27,7 @@ function UsersDAO(db) {
         if (email != "") {
             user['email'] = email;
         }
+        //for hw2-3 Creating user now is inserted
          users.insert(user, function(err, inserted) {
                 if (err) {
                     callback(err, null);
@@ -63,7 +64,7 @@ function UsersDAO(db) {
                 callback(no_such_user_error, null);
             }
         }
-
+        //validating user now implemented for hw
        users.findOne({'_id':username}, function(err, user) {
               callback(err,user);
           });
