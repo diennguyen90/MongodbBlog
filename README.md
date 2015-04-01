@@ -1,4 +1,4 @@
-Blog project for M101JS/MongoUniversity
+Blog project for M101JS
 
 ./app.js - entry point
 ./package.json - npm package description
