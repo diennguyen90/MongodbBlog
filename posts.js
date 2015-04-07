@@ -30,7 +30,15 @@ function PostsDAO(db) {
 
         // now insert the post
         // hw3.2 TODO
-        callback(Error("insertEntry Not Yet Implemented!"), null);
+        posts.insert(post, function(err, result){
+            "use strict";
+            if(!err){
+                console.log("Post inserted " + result[0].permalink);
+                return callback(null, result[0].permalink);  
+            }
+            return callback(err, null);
+        });
+        // callback(Error("insertEntry Not Yet Implemented!"), null);
     }
 
     this.getPosts = function(num, callback) {
@@ -82,7 +90,17 @@ function PostsDAO(db) {
         }
 
         // hw3.3 TODO
-        callback(Error("addComment Not Yet Implemented!"), null);
+        var query = { "permalink" : permalink };
+        var operator = { '$push' : { 'comments' : comment } };
+        posts.update(query, operator, function(err, updated){
+            "use strict" 
+            if(err)
+                return callback(err, null);
+            //console.log("Comment: " + comment.body + " inserted in post: " + permalink );
+            console.log("Comment: " + updated);
+            return callback(null, updated);   
+        });
+        // callback(Error("addComment Not Yet Implemented!"), null);
     }
 }
 
